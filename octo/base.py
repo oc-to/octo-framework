@@ -19,7 +19,7 @@ def get_settings_module():
 
     try:
         from config.settings.base import DEBUG  # type: ignore
-    except Exception:
+    except ImportError:
         raise ValueError(_error_structure)
 
     if DEBUG:
