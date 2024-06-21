@@ -1,4 +1,4 @@
-from octo.manager.command import Command
+from octo.manager import Command
 
 
 class StartApp(Command):
@@ -27,7 +27,7 @@ class StartApp(Command):
                     "django-admin",
                     "startapp",
                     f"{app_name}",
-                    f"--template={octo_dir}/app_template",
+                    f"--template={octo_dir}/conf/app_template",
                 ]
             )
         else:
