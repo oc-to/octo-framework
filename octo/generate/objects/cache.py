@@ -6,17 +6,19 @@ from octo.base import _error_structure
 from requests.exceptions import HTTPError
 import shutil
 from colorama import Fore, Style, init
+from octo.generate.objects.clean import CleanTemplate
 
 
 class CloneCache:
     """Caching for faster project creation"""
 
-    cache_dir = str | None
-    project_name_cache = str | None
-    project_name = str | None
-    repo_url = str | None
+    cache_dir: str = None
+    project_name_cache: str = None
+    project_name: str = None
+    repo_url: str = None
+    clean_class: CleanTemplate = None
 
-    def __init__(self, project_name: str | None):
+    def __init__(self, project_name: str | None) -> None:
         # Initialize the CloneCache instance with a project name
         # and setup the cache directory and repository
         self.get_cache_dir()
@@ -97,6 +99,7 @@ class CloneCache:
         self.validate_path(new_path, self.project_name)
 
         shutil.copytree(repo_cache, new_path)
+        self.clean_class(project_path=new_path).clean()
         print(
             Fore.MAGENTA
             + Style.BRIGHT
