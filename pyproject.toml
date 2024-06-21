@@ -5,7 +5,8 @@ authors = [
   { name="Octo Software", email="octo.team.dev@gmail.com" },
 ]
 description = "Octo-Framework is a framework designed to simplify the setup and development process for Django projects. It is based on the Octo-Lunch template and provides a set of tools and features that help developers build robust and flexible web applications faster and more efficiently."
-readme = "README.md"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {file = "LICENSE"}
 requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -35,6 +36,7 @@ dependencies = [
 dev = [
     "pytest>=8",
     "sphinx>=7",
+    "pre-commit",
 ]
 
 [project.urls]
@@ -49,4 +51,4 @@ build-backend = "setuptools.build_meta"
 octo = "octo.commands.manager:main"
 
 [tool.poetry.files]
-include = ["octo/*.py", "octo/*.py-tpl"]
+include = ["octo/*"]
