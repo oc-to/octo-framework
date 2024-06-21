@@ -30,6 +30,7 @@ dependencies = [
     "python-git==2018.2.1",
     "colorlog>=6",
     "colorama>=0.4",
+    "requests>=2.32",
 ]
 
 [project.optional-dependencies]
