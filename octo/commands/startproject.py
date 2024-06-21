@@ -1,5 +1,5 @@
 from octo.manager import Command
-from octo.generate.repositories import OctoLaunch
+from octo.generate.repositories.octo_launch import OctoLaunch
 from octo.generate.objects.cache import CloneCache
 
 
