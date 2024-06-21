@@ -1,5 +1,5 @@
 import sys
-from octo.manager.command import Command
+from octo.manager import Command
 
 
 class Manager:
