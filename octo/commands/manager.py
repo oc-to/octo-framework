@@ -1,5 +1,6 @@
 from octo.manager import Manager as ManagerTemplate
 from .startapp import StartApp
+from .startproject import StartProject
 
 
 class Manager(ManagerTemplate):
@@ -26,6 +27,7 @@ manager = Manager()
 manager.set_schema(
     {
         "startapp": StartApp,
+        "startproject": StartProject,
     }
 )
 
