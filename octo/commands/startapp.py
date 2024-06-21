@@ -4,6 +4,10 @@ from octo.manager import Command
 class StartApp(Command):
     """Create a django app inside the app/"""
 
+    def __init__(self):
+        super().__init__()
+        self.use_django = False
+
     def handle(self):
         # === import =====================================
         import subprocess
@@ -16,7 +20,7 @@ class StartApp(Command):
         APP_DIR = os.getcwd() + "/app"
 
         if not os.path.exists(APP_DIR):
-            raise ValueError(Fore.RED, _error_structure, Style.RESET_ALL)
+            raise ValueError(Fore.RED + _error_structure + Style.RESET_ALL)
 
         os.chdir(APP_DIR)
 
@@ -32,9 +36,11 @@ class StartApp(Command):
             )
         else:
             print(
-                Fore.RED,
-                "\nYou must enter the application name",
-                Fore.GREEN,
-                "\nocto startapp app_name",
-                Style.RESET_ALL,
+                Fore.RED
+                + "\n"
+                + "You must enter the application name"
+                + Fore.GREEN
+                + "\n"
+                + "octo startapp app_name"
+                + Style.RESET_ALL
             )

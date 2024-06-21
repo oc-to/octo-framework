@@ -1,7 +1,6 @@
 import sys
 import os
 import django
-from octo.base import get_settings_module
 
 
 class Command:
@@ -82,6 +81,8 @@ class Command:
     def _django_setup(self) -> None:
         """Runs the Django environment."""
         if self.use_django:
+            from octo.base import get_settings_module
+
             os.environ.setdefault("DJANGO_SETTINGS_MODULE", get_settings_module())
             django.setup()
             self.django_run = True
