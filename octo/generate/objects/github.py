@@ -11,17 +11,17 @@ class GitHubRepositorie:
     and fetching repository details via GitHub API.
     """
 
-    output_path = None
-    project_name = None
-    repo_url = None
-    repo_data = None
+    output_path: str = None
+    project_name: str = None
+    repo_url: str = None
+    repo_data: dict = None
 
     def __init__(
         self,
         project_name: str | None = None,
         repo_url: str | None = None,
         output_path: str | None = None,
-    ):
+    ) -> None:
         """
         Initialize the GitHubRepositorie instance.
 
