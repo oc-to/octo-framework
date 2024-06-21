@@ -27,10 +27,11 @@ classifiers = [
 ]
 dependencies = [
     "django>=4",
-    "python-git==2018.2.1",
+    "gitpython>=3",
     "colorlog>=6",
     "colorama>=0.4",
     "requests>=2.32",
+    "appdirs>=1.4",
 ]
 
 [project.optional-dependencies]
