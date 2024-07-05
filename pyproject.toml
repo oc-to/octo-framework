@@ -32,6 +32,10 @@ dependencies = [
     "colorama>=0.4",
     "requests>=2.32",
     "appdirs>=1.4",
+    "pillow>=10.3",
+    "faker",
+    "djangorestframework",
+    "djangorestframework-simplejwt",
 ]
 
 [project.optional-dependencies]
@@ -39,6 +43,7 @@ dev = [
     "pytest>=8",
     "sphinx>=7",
     "pre-commit",
+    "tox",
 ]
 
 [project.urls]
