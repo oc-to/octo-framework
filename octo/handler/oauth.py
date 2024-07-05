@@ -27,7 +27,7 @@ class OAuthHandler:
         pass
 
     def _get_headers(self):
-        return {"Authorization": "Bearer " + {self.access_token}}
+        return {"Authorization": "Bearer " + self.access_token}
 
     def _fetch_data(self) -> dict | None:
         try:
@@ -45,21 +45,24 @@ class OAuthHandler:
         if not user_info:
             return None
 
+        data_user = self.get_data_user(user_info)
+        return self.get_user(data_user)
+
+    def get_data_user(self, user_info: dict) -> dict:
         email = str(user_info.get(self.EMAIL_FIELD, ""))
         username = str(email.split("@")[0] + "_" + generate_code(4))
         name = str(user_info.get(self.NAME_FIELD, username))
 
-        return self.get_user(
-            {
-                "email": email,
-                "username": username,
-                "name": name,
-            }
-        )
+        return {
+            "email": email,
+            "username": username,
+            "name": name,
+        }
 
     def get_user(self, data_user: dict):
         try:
-            user, _ = User.objects.get_or_create(**data_user)
+            email = data_user["email"]
+            user, _ = User.objects.get_or_create(email=email, defaults=data_user)
             return user
         except Exception as e:
             self.logger.error(
@@ -91,7 +94,7 @@ class OAuthHandler:
 
     def generate_token(self, user) -> dict:
         token, _ = Token.objects.get_or_create(user=user)
-        return token
+        return {"token": token}
 
     def generate(self, token_type: str):
         return self._generate(token_type)
