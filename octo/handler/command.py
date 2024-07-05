@@ -65,7 +65,7 @@ class Command:
                     """
                     exit(1)
                 raise ValueError(str(e))
-            exit(1)
+            exit(0)
 
     def _run_hook(self) -> None:
         """Executes any hooks that match the command-line arguments."""

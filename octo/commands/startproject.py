@@ -1,6 +1,6 @@
-from octo.manager import Command
-from octo.generate.repositories.octo_launch import OctoLaunch
-from octo.generate.objects.cache import CloneCache
+from octo.handler.command import Command
+from octo.commands.generate.repositories.octo_launch import OctoLaunch
+from octo.handler.cache import CloneCache
 
 
 templates = {

@@ -1,12 +1,12 @@
 from appdirs import user_cache_dir
-from octo.generate.objects.github import GitHubRepositorie
 import os
 import sys
 from octo.base import _error_structure
 from requests.exceptions import HTTPError
 import shutil
 from colorama import Fore, Style, init
-from octo.generate.objects.clean import CleanTemplate
+from octo.handler.clean import CleanTemplate
+from octo.handler.github import GitHubRepositorie
 
 
 class CloneCache:
@@ -19,15 +19,15 @@ class CloneCache:
     clean_class: CleanTemplate = None
 
     def __init__(self, project_name: str | None) -> None:
-        # Initialize the CloneCache instance with a project name
-        # and setup the cache directory and repository
+        """Initialize the CloneCache instance with a project name
+        and setup the cache directory and repository"""
         self.get_cache_dir()
         self.project_name = project_name
         self.get_repo()
 
     def get_cache_dir(self):
-        # Get the cache directory path for the application
-        # and create it if it does not exist
+        """Get the cache directory path for the application
+        and create it if it does not exist"""
         cache_dir = user_cache_dir(appname="octo_framework", appauthor=False)
 
         if not os.path.exists(cache_dir):
@@ -36,7 +36,7 @@ class CloneCache:
         self.cache_dir = cache_dir
 
     def clone(self):
-        # Clone the repository if it does not exist in the cache
+        """Clone the repository if it does not exist in the cache"""
         clone = False
         project_cache = os.path.join(self.cache_dir, self.project_name_cache)
 
@@ -54,7 +54,7 @@ class CloneCache:
         self.clone_from_cache()
 
     def get_repo(self) -> GitHubRepositorie:
-        # Create a GitHub repository object for the project
+        """Create a GitHub repository object for the project"""
         repo = GitHubRepositorie(
             project_name=self.project_name_cache,
             repo_url=self.repo_url,
@@ -63,7 +63,7 @@ class CloneCache:
         self.repo = repo
 
     def get_verion(self):
-        # Check the version of the cached repository against the latest release
+        """Check the version of the cached repository against the latest release"""
         path = os.path.join(self.cache_dir, self.project_name_cache + "/config")
 
         sys.path.append(path)
@@ -79,7 +79,7 @@ class CloneCache:
 
     @staticmethod
     def validate_path(output_path, dir_name):
-        # Validate the output path to ensure it does not already exist
+        """Validate the output path to ensure it does not already exist"""
         if os.path.exists(output_path):
             raise ValueError(
                 Fore.RED
