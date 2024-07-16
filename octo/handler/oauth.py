@@ -62,6 +62,10 @@ class OAuthHandler:
     def get_user(self, data_user: dict):
         try:
             email = data_user["email"]
+            
+            if not email:
+                return None
+                
             user, _ = User.objects.get_or_create(email=email, defaults=data_user)
             return user
         except Exception as e:
