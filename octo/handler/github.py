@@ -128,7 +128,7 @@ class GitHubRepositorie:
         )
 
         try:
-            git.Repo.clone_from(self.repo_url, output_path, branch=branch)
+            git.Repo.clone_from(self._repo_url, output_path, branch=branch)
             print(
                 Fore.GREEN
                 + Style.BRIGHT
