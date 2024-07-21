@@ -16,8 +16,12 @@ class OAuthGoogle(OAuthHandler):
 
         if response.status_code == 200:
             token_info = response.json()
-            client_ids = settings.OCTO_OAUTH.get("google")
-
+            try:
+                client_ids = settings.OCTO_OAUTH.get("google")
+            except AttributeError:
+                raise ValueError(
+                    "The 'OCTO_OAUTH' setting is not properly configured. Please ensure 'OCTO_OAUTH' is defined in your settings and contains a valid key for 'google'."
+                )
             if token_info["aud"] in client_ids:
                 return True
 
