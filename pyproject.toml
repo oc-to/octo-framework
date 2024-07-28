@@ -1,6 +1,6 @@
 [project]
 name = "octo-framework"
-version = "1.0.0"
+version = "1.0.1"
 authors = [
   { name="Octo Software", email="octo.team.dev@gmail.com" },
 ]
