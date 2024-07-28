@@ -49,5 +49,5 @@ class OctoLaunchClean(CleanTemplate):
 
 class OctoLaunch(CloneCache):
     project_name_cache = "octo-launch"
-    repo_url = "https://github.com/oc-to/octo-launch"
+    repo_url = "https://github.com/caodlly/octo-launch"
     clean_class = OctoLaunchClean
